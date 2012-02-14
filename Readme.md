@@ -6,7 +6,7 @@ This package contains some magic titty sprinkles to help people who wish to retu
 * ```JsonErrorHandler``` to replace the normal ErrorHandler. This way, any errors -in code- are now outputted as json.
 * ```ApiJsonResult``` this is the money shot. your model object is returned as some JSON, but in a standard way. Standard?? What's this standard you speak of?
 
-### JSON standard
+## JSON standard
 .. which really means, JSON response based on Api.StackExchange.com. If it's good enough for them, well .. it's good enough for me. And it should be good enough for you. I mean, seriously. The Stack-Krew are balltastic-smart. So just bend over and accept it.
 
 ## I said .. code speaks!
@@ -86,6 +86,9 @@ public ActionResult Index2()
                                     });
 }
 ```
+and here's the output as pwitty sexah json ...
+
+![Isn't this awesome?!](http://i.imgur.com/6ygEt.png)
 
 ### Pull Requests? 
 Awww yeah! I do accept em *hint thint*

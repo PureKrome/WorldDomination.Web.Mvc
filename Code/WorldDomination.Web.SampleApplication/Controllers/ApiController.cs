@@ -26,9 +26,9 @@ namespace WorldDomination.Web.SampleApplication.Controllers
                                          });
         }
 
-        // Example of something returning a collection of results.
-        // Eg. a list of users, a list of products, a list of <insert what eva, here>.
-        // We assume that you're paging your results, of course....
+// Example of something returning a collection of results.
+// Eg. a list of users, a list of products, a list of <insert what eva, here>.
+// We assume that you're paging your results, of course....
         public ActionResult Index2()
         {
             var dancingPeople = new List<PewPew>
