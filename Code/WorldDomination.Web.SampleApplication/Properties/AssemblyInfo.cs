@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Api Json Result wrapper")]
-[assembly: AssemblyDescription("This is a json wrapper for any RESTful Api")]
+[assembly: AssemblyTitle("WorldDomination.Web.SampleApplication")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("World Domination Technologies Pty. Ltd.")]
-[assembly: AssemblyProduct("Api Json Result wrapper")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("WorldDomination.Web.SampleApplication")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("25fbab24-d849-4f53-bba3-79b6f4098a5e")]
+[assembly: Guid("a6b3cfeb-b9b4-43a2-b2da-9c0a98c4a1e3")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -29,8 +29,7 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-// You can specify all the values or you can default the Build and Revision Numbers 
+// You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
