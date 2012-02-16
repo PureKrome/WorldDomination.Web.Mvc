@@ -57,7 +57,7 @@ namespace WorldDomination.Mvc.Attributes
 
             filterContext.ExceptionHandled = true;
             filterContext.HttpContext.Response.Clear();
-            filterContext.HttpContext.Response.StatusCode = (int) httpStatusCode;
+            filterContext.HttpContext.Response.StatusCode = (int)httpStatusCode;
 
             // Certain versions of IIS will sometimes use their own error page when 
             // they detect a server error. Setting this property indicates that we

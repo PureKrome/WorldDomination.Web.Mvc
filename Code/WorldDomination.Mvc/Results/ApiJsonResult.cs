@@ -9,7 +9,7 @@ namespace WorldDomination.Mvc.Results
 {
     public class ApiJsonResult : JsonResult
     {
-        public ApiJsonResult(ResponseWrapper responseWrapper)
+        public ApiJsonResult(ApiViewModel responseWrapper)
         {
             if (responseWrapper == null)
             {
@@ -50,6 +50,9 @@ namespace WorldDomination.Mvc.Results
 
         public override void ExecuteResult(ControllerContext context)
         {
+            // This code is, more or less, a copy-paste job from JsonResult.ExecuteResult(..) method
+            // except I've wired up my own JsonExpandoConverter.
+
             if (context == null)
             {
                 throw new ArgumentNullException("context");
@@ -70,7 +73,7 @@ namespace WorldDomination.Mvc.Results
             }
 
             var javaScriptSerializer = new JavaScriptSerializer();
-            javaScriptSerializer.RegisterConverters(new JavaScriptConverter[] {new ExpandoJsonConverter()});
+            javaScriptSerializer.RegisterConverters(new JavaScriptConverter[] {new JsonExpandoConverter()});
             response.Write(javaScriptSerializer.Serialize(Data));
         }
     }

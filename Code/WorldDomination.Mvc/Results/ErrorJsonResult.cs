@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Net;
 using System.Text;
 using System.Web.Mvc;
+using WorldDomination.Mvc.Models;
 
 namespace WorldDomination.Mvc.Results
 {
@@ -45,6 +45,12 @@ namespace WorldDomination.Mvc.Results
 
         public ICollection<string> ErrorMessages { get; private set; }
 
+        public new object Data
+        {
+            get { return base.Data; }
+            private set { base.Data = value; }
+        }
+
         public void AddErrorMessage(string errorMessage)
         {
             if (ErrorMessages == null)
@@ -57,8 +63,6 @@ namespace WorldDomination.Mvc.Results
             SetDataObject();
         }
 
-        public new object Data { get; private set; }
-
         private void SetDataObject()
         {
             var errorMessages = new StringBuilder();
@@ -70,12 +74,12 @@ namespace WorldDomination.Mvc.Results
                 }
             }
 
-            dynamic data = new ExpandoObject();
-            data.error_status = (int) HttpStatusCode;
-            data.error_name = GetErrorName(HttpStatusCode);
-            data.error_message = errorMessages.ToString();
-
-            Data = data;
+            Data = new JsonErrorViewModel
+                       {
+                           error_status = (int) HttpStatusCode,
+                           error_name = GetErrorName(HttpStatusCode),
+                           error_message = errorMessages.ToString()
+                       };
         }
 
         private static string GetErrorName(HttpStatusCode httpStatusCode)

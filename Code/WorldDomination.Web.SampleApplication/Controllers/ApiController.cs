@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using WorldDomination.Mvc.Models;
 using WorldDomination.Mvc.Results;
@@ -8,7 +9,7 @@ namespace WorldDomination.Web.SampleApplication.Controllers
 {
     public class ApiController : Controller
     {
-        public ActionResult Index()
+        public JsonResult Index()
         {
             var pewPew = new PewPew
                              {
@@ -20,16 +21,16 @@ namespace WorldDomination.Web.SampleApplication.Controllers
                                                       "Moonwalk"
                                                   }
                              };
-            return new ApiJsonResult(new ResponseWrapper
+            return new ApiJsonResult(new ApiViewModel
                                          {
                                              Items = new List<object> {pewPew}
                                          });
         }
 
-// Example of something returning a collection of results.
-// Eg. a list of users, a list of products, a list of <insert what eva, here>.
-// We assume that you're paging your results, of course....
-        public ActionResult Index2()
+        // Example of something returning a collection of results.
+        // Eg. a list of users, a list of products, a list of <insert what eva, here>.
+        // We assume that you're paging your results, of course....
+        public JsonResult Index2()
         {
             var dancingPeople = new List<PewPew>
                                     {
@@ -55,14 +56,19 @@ namespace WorldDomination.Web.SampleApplication.Controllers
                                             }
                                     };
 
-            return new ApiJsonResult(new ResponseWrapper
+            return new ApiJsonResult(new ApiViewModel
                                          {
-                                             Items = new List<object> {dancingPeople},
+                                             Items = new List<object> (dancingPeople),
                                              Page = 1,
                                              PageSize = 10,
                                              TotalItemsCount = 100,
                                              TotalPages = 10
                                          });
+        }
+
+        public JsonResult Error1()
+        {
+            throw new InvalidOperationException("RuRoh - something unexpected happened.");
         }
     }
 }
