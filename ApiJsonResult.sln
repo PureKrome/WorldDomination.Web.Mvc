@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldDomination.Mvc", "Code\WorldDomination.Mvc\WorldDomination.Mvc.csproj", "{B4A3A345-5699-45B9-BF06-46D56BF41ADA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldDomination.Web.SampleApplication", "Code\WorldDomination.Web.SampleApplication\WorldDomination.Web.SampleApplication.csproj", "{B961C9D3-1014-4284-A015-D0C8B9B6D98D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{B4A3A345-5699-45B9-BF06-46D56BF41ADA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4A3A345-5699-45B9-BF06-46D56BF41ADA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4A3A345-5699-45B9-BF06-46D56BF41ADA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B961C9D3-1014-4284-A015-D0C8B9B6D98D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B961C9D3-1014-4284-A015-D0C8B9B6D98D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B961C9D3-1014-4284-A015-D0C8B9B6D98D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B961C9D3-1014-4284-A015-D0C8B9B6D98D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Net;
 using System.Text;
 using System.Web.Mvc;
@@ -56,6 +57,8 @@ namespace WorldDomination.Mvc.Results
             SetDataObject();
         }
 
+        public new object Data { get; private set; }
+
         private void SetDataObject()
         {
             var errorMessages = new StringBuilder();
@@ -67,12 +70,12 @@ namespace WorldDomination.Mvc.Results
                 }
             }
 
-            Data = new
-                       {
-                           error_status = (int) HttpStatusCode,
-                           error_name = GetErrorName(HttpStatusCode),
-                           error_message = errorMessages.ToString()
-                       };
+            dynamic data = new ExpandoObject();
+            data.error_status = (int) HttpStatusCode;
+            data.error_name = GetErrorName(HttpStatusCode);
+            data.error_message = errorMessages.ToString();
+
+            Data = data;
         }
 
         private static string GetErrorName(HttpStatusCode httpStatusCode)

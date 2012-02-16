@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\HandleJsonErrorAttribute.cs" />
+    <Compile Include="Models\ErrorJsonViewModel.cs" />
     <Compile Include="Models\ResponseWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Results\ApiJsonResult.cs" />
@@ -48,7 +49,6 @@
     <Compile Include="Results\ExpandoJsonConverter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
