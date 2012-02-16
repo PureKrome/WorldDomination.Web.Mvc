@@ -6,7 +6,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Web.Script.Serialization;
 
-namespace WorldDomination.Mvc.Results
+namespace WorldDomination.Web.Mvc.Results
 {
 
     // NOTE: Code taken from http://www.patridgedev.com/2011/08/24/getting-dynamic-expandoobject-to-serialize-to-json-as-expected/

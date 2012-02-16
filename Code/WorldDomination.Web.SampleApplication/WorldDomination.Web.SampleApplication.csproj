@@ -83,9 +83,9 @@
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WorldDomination.Mvc\WorldDomination.Mvc.csproj">
+    <ProjectReference Include="..\WorldDomination.Mvc\WorldDomination.Web.Mvc.csproj">
       <Project>{B4A3A345-5699-45B9-BF06-46D56BF41ADA}</Project>
-      <Name>WorldDomination.Mvc</Name>
+      <Name>WorldDomination.Web.Mvc</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using WorldDomination.Mvc.Models;
-using WorldDomination.Mvc.Results;
+using WorldDomination.Web.Mvc.Models;
+using WorldDomination.Web.Mvc.Results;
 using WorldDomination.Web.SampleApplication.Models;
 
 namespace WorldDomination.Web.SampleApplication.Controllers

@@ -1,4 +1,4 @@
-﻿namespace WorldDomination.Mvc.Models
+﻿namespace WorldDomination.Web.Mvc.Models
 {
     // ReSharper disable InconsistentNaming
 

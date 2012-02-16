@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using System.Web.Mvc;
-using WorldDomination.Mvc.Models;
+using WorldDomination.Web.Mvc.Models;
 
-namespace WorldDomination.Mvc.Results
+namespace WorldDomination.Web.Mvc.Results
 {
     public class ErrorJsonResult : JsonResult
     {

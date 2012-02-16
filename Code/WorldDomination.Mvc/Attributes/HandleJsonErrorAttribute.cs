@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using WorldDomination.Mvc.Results;
+using WorldDomination.Web.Mvc.Results;
 
-namespace WorldDomination.Mvc.Attributes
+namespace WorldDomination.Web.Mvc.Attributes
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
     public class HandleJsonErrorAttribute : FilterAttribute, IExceptionFilter

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace WorldDomination.Mvc.Models
+namespace WorldDomination.Web.Mvc.Models
 {
     public class ApiViewModel
     {

@@ -3,9 +3,9 @@ using System.Dynamic;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
-using WorldDomination.Mvc.Models;
+using WorldDomination.Web.Mvc.Models;
 
-namespace WorldDomination.Mvc.Results
+namespace WorldDomination.Web.Mvc.Results
 {
     public class ApiJsonResult : JsonResult
     {
