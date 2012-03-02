@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace WorldDomination.Web.Mvc.Models
 {
@@ -9,13 +10,13 @@ namespace WorldDomination.Web.Mvc.Models
         public IList<object> Items { get; set; }
         public int Page { get; set; }
         public int PageSize { get; set; }
-        public int TotalPages { get; set; }
 
-        public int TotalItemsCount
+        public int TotalPages
         {
-            get { return TotalItemsCount/PageSize + 1; }
+            get { return (int)Math.Ceiling(TotalItemsCount / (double)(PageSize)); }
         }
 
+        public int TotalItemsCount { get; set; }
         public int MaximumQuota { get; set; }
         public int RemainingQuota { get; set; }
     }

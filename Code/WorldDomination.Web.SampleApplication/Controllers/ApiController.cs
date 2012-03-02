@@ -61,8 +61,7 @@ namespace WorldDomination.Web.SampleApplication.Controllers
                                              Items = new List<object> (dancingPeople),
                                              Page = 1,
                                              PageSize = 10,
-                                             TotalItemsCount = 100,
-                                             TotalPages = 10
+                                             TotalItemsCount = 55
                                          });
         }
 

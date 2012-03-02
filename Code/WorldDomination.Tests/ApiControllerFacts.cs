@@ -71,8 +71,8 @@ namespace WorldDomination.Tests
                 // Paging Asserts.
                 Assert.Equal(1, data.page);
                 Assert.Equal(10, data.page_size);
-                Assert.Equal(10, data.total_pages);
-                Assert.Equal(100, data.total_items_count);
+                Assert.Equal(6, data.total_pages);
+                Assert.Equal(55, data.total_items_count);
             }
         }
 
