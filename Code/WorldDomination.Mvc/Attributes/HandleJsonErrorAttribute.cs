@@ -73,13 +73,14 @@ namespace WorldDomination.Web.Mvc.Attributes
                        {
                            HttpStatusCode.BadRequest,
                            HttpStatusCode.Unauthorized,
-                           HttpStatusCode.PaymentRequired,
                            HttpStatusCode.Forbidden,
                            HttpStatusCode.NotFound,
                            HttpStatusCode.MethodNotAllowed,
                            HttpStatusCode.NotAcceptable,
                            HttpStatusCode.InternalServerError,
-                           HttpStatusCode.BadGateway
+                           HttpStatusCode.BadGateway,
+                           HttpStatusCode.ServiceUnavailable
+
                        };
         }
     }

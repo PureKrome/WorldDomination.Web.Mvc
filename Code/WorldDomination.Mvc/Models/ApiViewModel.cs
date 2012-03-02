@@ -10,7 +10,12 @@ namespace WorldDomination.Web.Mvc.Models
         public int Page { get; set; }
         public int PageSize { get; set; }
         public int TotalPages { get; set; }
-        public int TotalItemsCount { get; set; }
+
+        public int TotalItemsCount
+        {
+            get { return TotalItemsCount/PageSize + 1; }
+        }
+
         public int MaximumQuota { get; set; }
         public int RemainingQuota { get; set; }
     }

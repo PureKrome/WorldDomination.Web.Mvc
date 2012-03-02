@@ -93,9 +93,6 @@ namespace WorldDomination.Web.Mvc.Results
                 case 401:
                     description = "access_token_required";
                     break;
-                case 402:
-                    description = "invalid_access_token";
-                    break;
                 case 403:
                     description = "access_denied";
                     break;
@@ -112,7 +109,10 @@ namespace WorldDomination.Web.Mvc.Results
                     description = "internal_error";
                     break;
                 case 502:
-                    description = "throttle_violation";
+                    description = "bad_gateway";
+                    break;
+                case 503:
+                    description = "service_unavailable";
                     break;
                 default:
                     description = "unknown_error";
