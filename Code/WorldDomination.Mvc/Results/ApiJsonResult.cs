@@ -20,19 +20,16 @@ namespace WorldDomination.Web.Mvc.Results
 
             dynamic data = new ExpandoObject();
 
-            // Required Items.
-            data.quota = viewModel.MaximumQuota;
-            data.quota_remaining = viewModel.RemainingQuota;
-
             // Optional stuff => lets convert this viewModel.
             var apiViewModel = viewModel as ApiViewModel;
             if (apiViewModel != null)
             {
                 data.items = apiViewModel.Items ?? new List<object>(); // NOTE: can be empty.
 
-                HttpStatusCode = apiViewModel.Items == null || apiViewModel.Items.Count <= 0
-                                     ? HttpStatusCode.NoContent
-                                     : HttpStatusCode.OK;
+                //HttpStatusCode = apiViewModel.Items == null || apiViewModel.Items.Count <= 0
+                //                     ? HttpStatusCode.NoContent
+                //                     : HttpStatusCode.OK;
+                HttpStatusCode = HttpStatusCode.OK;
 
                 if (apiViewModel.Page > 0)
                 {
@@ -61,6 +58,10 @@ namespace WorldDomination.Web.Mvc.Results
                 data.error_message = errorViewModel.ErrorMessage;
                 HttpStatusCode = errorViewModel.ErrorStatus;
             }
+
+            // Required Items.
+            data.quota = viewModel.MaximumQuota;
+            data.quota_remaining = viewModel.RemainingQuota;
 
             Data = data;
 

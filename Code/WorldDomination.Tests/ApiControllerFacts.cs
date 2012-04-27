@@ -11,8 +11,6 @@ namespace WorldDomination.Tests
 
     public class ApiControllerFacts
     {
-        #region Nested type: IndexFacts
-
         public class IndexFacts
         {
             [Fact]
@@ -99,7 +97,28 @@ namespace WorldDomination.Tests
             }
         }
 
-        #endregion
+        public class ErrorFacts
+        {
+            [Fact]
+            public void GivenSomeBadParameters_Error2_RetunsSomeJsonWithA400Status()
+            {
+                // Arrange.
+                var apiController = new ApiController();
+
+                // Act.
+                ApiJsonResult apiJsonResult = apiController.Error2();
+
+                // Assert.
+                Assert.NotNull(apiJsonResult);
+                Assert.NotNull(apiJsonResult.Data);
+                Assert.Equal(HttpStatusCode.BadRequest, apiJsonResult.HttpStatusCode);
+
+                // Retrieve the api data from 'items'.
+                dynamic data = apiJsonResult.Data;
+                Assert.NotNull(data);
+                Assert.Equal("Error message #1.\r\nError message #2.\r\nError message #3.\r\n", data.error_message);
+            }
+        }
     }
 
     // ReSharper restore InconsistentNaming
