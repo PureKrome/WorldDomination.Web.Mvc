@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using WorldDomination.Web.Mvc.Models;
 using WorldDomination.Web.Mvc.Results;
 
 namespace WorldDomination.Web.Mvc.Attributes
@@ -46,18 +47,22 @@ namespace WorldDomination.Web.Mvc.Attributes
             }
 
             // Grab all the error messages.
-            var errorMessages = new List<string>();
+            var errorMessages = new StringBuilder();
             while (exception != null)
             {
-                errorMessages.Add(exception.Message);
+                errorMessages.AppendLine(exception.Message);
                 exception = exception.InnerException;
             }
 
-            filterContext.Result = new ErrorJsonResult(httpStatusCode, errorMessages);
+            filterContext.Result = new ApiJsonResult(new ErrorViewModel
+                                                     {
+                                                         ErrorMessage = errorMessages.ToString(),
+                                                         ErrorStatus = httpStatusCode
+                                                     });
 
             filterContext.ExceptionHandled = true;
             filterContext.HttpContext.Response.Clear();
-            filterContext.HttpContext.Response.StatusCode = (int)httpStatusCode;
+            filterContext.HttpContext.Response.StatusCode = (int) httpStatusCode;
 
             // Certain versions of IIS will sometimes use their own error page when 
             // they detect a server error. Setting this property indicates that we
@@ -66,22 +71,5 @@ namespace WorldDomination.Web.Mvc.Attributes
         }
 
         #endregion
-
-        public static IEnumerable<HttpStatusCode> AcceptedHttpErrorCodes()
-        {
-            return new List<HttpStatusCode>
-                       {
-                           HttpStatusCode.BadRequest,
-                           HttpStatusCode.Unauthorized,
-                           HttpStatusCode.Forbidden,
-                           HttpStatusCode.NotFound,
-                           HttpStatusCode.MethodNotAllowed,
-                           HttpStatusCode.NotAcceptable,
-                           HttpStatusCode.InternalServerError,
-                           HttpStatusCode.BadGateway,
-                           HttpStatusCode.ServiceUnavailable
-
-                       };
-        }
     }
 }

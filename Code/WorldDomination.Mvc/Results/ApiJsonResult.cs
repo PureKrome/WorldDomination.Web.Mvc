@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Dynamic;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
@@ -9,44 +11,63 @@ namespace WorldDomination.Web.Mvc.Results
 {
     public class ApiJsonResult : JsonResult
     {
-        public ApiJsonResult(ApiViewModel responseWrapper)
+        public ApiJsonResult(BaseApiViewModel viewModel)
         {
-            if (responseWrapper == null)
+            if (viewModel == null)
             {
-                throw new ArgumentNullException("responseWrapper");
+                throw new ArgumentNullException("viewModel");
             }
 
             dynamic data = new ExpandoObject();
 
             // Required Items.
-            data.items = responseWrapper.Items;
-            data.quota = responseWrapper.MaximumQuota;
-            data.quota_remaining = responseWrapper.RemainingQuota;
+            data.quota = viewModel.MaximumQuota;
+            data.quota_remaining = viewModel.RemainingQuota;
 
-            // Optional stuff.
-            if (responseWrapper.Page > 0)
+            // Optional stuff => lets convert this viewModel.
+            var apiViewModel = viewModel as ApiViewModel;
+            if (apiViewModel != null)
             {
-                data.page = responseWrapper.Page;
+                data.items = apiViewModel.Items ?? new List<object>(); // NOTE: can be empty.
+
+                HttpStatusCode = apiViewModel.Items == null || apiViewModel.Items.Count <= 0
+                                     ? HttpStatusCode.NoContent
+                                     : HttpStatusCode.OK;
+
+                if (apiViewModel.Page > 0)
+                {
+                    data.page = apiViewModel.Page;
+                }
+
+                if (apiViewModel.PageSize > 0)
+                {
+                    data.page_size = apiViewModel.PageSize;
+                }
+
+                if (apiViewModel.TotalPages > 0)
+                {
+                    data.total_pages = apiViewModel.TotalPages;
+                }
+
+                if (apiViewModel.TotalItemsCount > 0)
+                {
+                    data.total_items_count = apiViewModel.TotalItemsCount;
+                }
             }
 
-            if (responseWrapper.PageSize > 0)
+            var errorViewModel = viewModel as ErrorViewModel;
+            if (errorViewModel != null)
             {
-                data.page_size = responseWrapper.PageSize;
-            }
-
-            if (responseWrapper.TotalPages > 0)
-            {
-                data.total_pages = responseWrapper.TotalPages;
-            }
-
-            if (responseWrapper.TotalItemsCount > 0)
-            {
-                data.total_items_count = responseWrapper.TotalItemsCount;
+                data.error_message = errorViewModel.ErrorMessage;
+                HttpStatusCode = errorViewModel.ErrorStatus;
             }
 
             Data = data;
+
             JsonRequestBehavior = JsonRequestBehavior.AllowGet;
         }
+
+        public HttpStatusCode HttpStatusCode { get; private set; }
 
         public override void ExecuteResult(ControllerContext context)
         {
@@ -61,6 +82,7 @@ namespace WorldDomination.Web.Mvc.Results
             HttpResponseBase response = context.HttpContext.Response;
 
             response.ContentType = !string.IsNullOrEmpty(ContentType) ? ContentType : "application/json";
+            response.StatusCode = (int) HttpStatusCode;
 
             if (ContentEncoding != null)
             {
@@ -74,6 +96,7 @@ namespace WorldDomination.Web.Mvc.Results
 
             var javaScriptSerializer = new JavaScriptSerializer();
             javaScriptSerializer.RegisterConverters(new JavaScriptConverter[] {new JsonExpandoConverter()});
+
             response.Write(javaScriptSerializer.Serialize(Data));
         }
     }

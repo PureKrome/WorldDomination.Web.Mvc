@@ -9,65 +9,81 @@ namespace WorldDomination.Web.SampleApplication.Controllers
 {
     public class ApiController : Controller
     {
-        public JsonResult Index()
+        public ViewResult Index()
         {
-            var pewPew = new PewPew
-                             {
-                                 Name = "Pure Krome",
-                                 Age = 999,
-                                 DanceMoves = new List<string>
-                                                  {
-                                                      "Melbourne Shuffle",
-                                                      "Moonwalk"
-                                                  }
-                             };
-            return new ApiJsonResult(new ApiViewModel
-                                         {
-                                             Items = new List<object> {pewPew}
-                                         });
+            return View();
         }
 
-        // Example of something returning a collection of results.
-        // Eg. a list of users, a list of products, a list of <insert what eva, here>.
-        // We assume that you're paging your results, of course....
-        public JsonResult Index2()
+        public ApiJsonResult Test(int id)
         {
-            var dancingPeople = new List<PewPew>
-                                    {
-                                        new PewPew
-                                            {
-                                                Name = "Pure Krome",
-                                                Age = 999,
-                                                DanceMoves = new List<string>
-                                                                 {
-                                                                     "Melbourne Shuffle",
-                                                                     "Moonwalk"
-                                                                 }
-                                            },
-                                        new PewPew
-                                            {
-                                                Name = "AssHat",
-                                                Age = 999,
-                                                DanceMoves = new List<string>
-                                                                 {
-                                                                     "Sprinkler",
-                                                                     "Small Box, Middle Box, Large Box"
-                                                                 }
-                                            }
-                                    };
+            var pewPews = GetData(id) ?? new List<PewPew>();
 
             return new ApiJsonResult(new ApiViewModel
-                                         {
-                                             Items = new List<object> (dancingPeople),
-                                             Page = 1,
-                                             PageSize = 10,
-                                             TotalItemsCount = 55
-                                         });
+                                     {
+                                         Items = new List<object>(pewPews),
+                                         Page = pewPews.Count > 0 ? 1 : 0,
+                                         PageSize = pewPews.Count > 0 ? 10 : 0,
+                                         TotalItemsCount = pewPews.Count
+                                     });
         }
 
-        public JsonResult Error1()
+        public JsonResult Error()
         {
             throw new InvalidOperationException("RuRoh - something unexpected happened.");
+        }
+
+        private static IList<PewPew> GetData(int id)
+        {
+            List<PewPew> pewPews;
+
+            switch (id)
+            {
+                case 1:
+                    pewPews = new List<PewPew>
+                              {
+                                  new PewPew
+                                  {
+                                      Name = "Pure Krome",
+                                      Age = 999,
+                                      DanceMoves = new List<string>
+                                                   {
+                                                       "Melbourne Shuffle",
+                                                       "Moonwalk"
+                                                   }
+                                  }
+                              };
+                    break;
+                case 2:
+                    pewPews = new List<PewPew>
+                              {
+                                  new PewPew
+                                  {
+                                      Name = "Pure Krome",
+                                      Age = 999,
+                                      DanceMoves = new List<string>
+                                                   {
+                                                       "Melbourne Shuffle",
+                                                       "Moonwalk"
+                                                   }
+                                  },
+                                  new PewPew
+                                  {
+                                      Name = "AssHat",
+                                      Age = 999,
+                                      DanceMoves = new List<string>
+                                                   {
+                                                       "Sprinkler",
+                                                       "Small Box, Middle Box, Large Box"
+                                                   }
+                                  }
+                              };
+                    break;
+                default:
+                    pewPews = null;
+                    break;
+            }
+
+            return pewPews;
         }
     }
 }

@@ -42,11 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\HandleJsonErrorAttribute.cs" />
-    <Compile Include="Models\JsonErrorViewModel.cs" />
+    <Compile Include="Models\BaseApiViewModel.cs" />
+    <Compile Include="Models\ErrorViewModel.cs" />
     <Compile Include="Models\ApiViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Results\ApiJsonResult.cs" />
-    <Compile Include="Results\ErrorJsonResult.cs" />
     <Compile Include="Results\JsonExpandoConverter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

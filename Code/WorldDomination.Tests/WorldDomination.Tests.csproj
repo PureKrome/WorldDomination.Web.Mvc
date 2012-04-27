@@ -57,6 +57,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WorldDomination.Mvc\WorldDomination.Web.Mvc.csproj">
+      <Project>{B4A3A345-5699-45B9-BF06-46D56BF41ADA}</Project>
+      <Name>WorldDomination.Web.Mvc</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WorldDomination.Web.SampleApplication\WorldDomination.Web.SampleApplication.csproj">
       <Project>{B961C9D3-1014-4284-A015-D0C8B9B6D98D}</Project>
       <Name>WorldDomination.Web.SampleApplication</Name>
