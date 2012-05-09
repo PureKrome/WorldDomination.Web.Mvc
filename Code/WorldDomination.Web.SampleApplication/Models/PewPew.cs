@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace WorldDomination.Web.SampleApplication.Models
 {
@@ -7,5 +8,6 @@ namespace WorldDomination.Web.SampleApplication.Models
         public string Name { get; set; }
         public int Age { get; set; }
         public IList<string> DanceMoves { get; set; }
+        public DateTime CreatedOn { get; set; }
     }
 }

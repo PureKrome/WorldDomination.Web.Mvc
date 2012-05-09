@@ -78,7 +78,7 @@ namespace WorldDomination.Tests
             }
 
             [Fact]
-            public void GivenNoUserData_Index_ReturnsSomeJsonWithAnEmptyDataItemsAndStatusIs204()
+            public void GivenNoUserData_Index_ReturnsSomeJsonWithAnEmptyDataItems()
             {
                 // Arrange.
                 var apiController = new ApiController();
@@ -93,7 +93,7 @@ namespace WorldDomination.Tests
                 // Retrieve the api data from 'items'.
                 dynamic data = apiJsonResult.Data;
                 Assert.Empty(data.items);
-                Assert.Equal(HttpStatusCode.NoContent, apiJsonResult.HttpStatusCode);
+                Assert.Equal(HttpStatusCode.OK, apiJsonResult.HttpStatusCode);
             }
         }
 
@@ -117,6 +117,30 @@ namespace WorldDomination.Tests
                 dynamic data = apiJsonResult.Data;
                 Assert.NotNull(data);
                 Assert.Equal("Error message #1.\r\nError message #2.\r\nError message #3.\r\n", data.error_message);
+            }
+
+            [Fact]
+            public void GivenAnInvalidModelState_Error3_RetunsSomeJsonWithA400Status()
+            {
+                // Arrange.
+                var apiController = new ApiController();
+                
+                // Unit tests don't fire off Model Binding, so lets fake it.
+                apiController.ViewData.ModelState.AddModelError("Name", "A Name is required.");
+
+
+                // Act.
+                ApiJsonResult apiJsonResult = apiController.Error3(new InputViewModel());
+
+                // Assert.
+                Assert.NotNull(apiJsonResult);
+                Assert.NotNull(apiJsonResult.Data);
+                Assert.Equal(HttpStatusCode.BadRequest, apiJsonResult.HttpStatusCode);
+
+                // Retrieve the api data from 'items'.
+                dynamic data = apiJsonResult.Data;
+                Assert.NotNull(data);
+                Assert.Equal("A Name is required.", data.error_message);
             }
         }
     }

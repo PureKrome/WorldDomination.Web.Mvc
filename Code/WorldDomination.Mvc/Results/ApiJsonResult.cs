@@ -4,13 +4,16 @@ using System.Dynamic;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using WorldDomination.Web.Mvc.Models;
 
 namespace WorldDomination.Web.Mvc.Results
 {
     public class ApiJsonResult : JsonResult
     {
+        private JsonSerializerSettings _serializerSettings;
+
         public ApiJsonResult(BaseApiViewModel viewModel)
         {
             if (viewModel == null)
@@ -69,6 +72,30 @@ namespace WorldDomination.Web.Mvc.Results
         }
 
         public HttpStatusCode HttpStatusCode { get; private set; }
+        public Formatting Formatting { get; set; }
+
+        public JsonSerializerSettings SerializerSettings
+        {
+            get
+            {
+                if (_serializerSettings != null)
+                {
+                    return _serializerSettings;
+                }
+
+                // New settings with all dates set to be ISO 8601.
+                _serializerSettings = new JsonSerializerSettings
+                                      {
+                                          Converters = new List<JsonConverter>
+                                                       {
+                                                           new IsoDateTimeConverter()
+                                                       }
+                                      };
+
+                return _serializerSettings;
+            }
+            set { _serializerSettings = value; }
+        }
 
         public override void ExecuteResult(ControllerContext context)
         {
@@ -95,10 +122,12 @@ namespace WorldDomination.Web.Mvc.Results
                 return;
             }
 
-            var javaScriptSerializer = new JavaScriptSerializer();
-            javaScriptSerializer.RegisterConverters(new JavaScriptConverter[] {new JsonExpandoConverter()});
+            var writer = new JsonTextWriter(response.Output) {Formatting = Formatting};
 
-            response.Write(javaScriptSerializer.Serialize(Data));
+            JsonSerializer serializer = JsonSerializer.Create(SerializerSettings ?? new JsonSerializerSettings());
+            serializer.Serialize(writer, Data);
+
+            writer.Flush();
         }
     }
 }

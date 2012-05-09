@@ -1,5 +1,20 @@
 ## Api Json Result for ASP.NET MVC applications
-This package contains some magic titty sprinkles to help people who wish to return Json results for their ASP.NET MVC applications. Like .. an API website :)
+This package contains some magic titty sparkles to help people who wish to return Json results ** IN A STANDARD TEMPLATE ** for their ASP.NET MVC applications. Like .. an API website :)
+
+```
+{
+  items: []
+             or
+         [
+             { ... list of your objects ... }
+         ],
+  page: <number>,             // Optional, if number > 0
+  page_size: <number>,        // Optional, if number > 0
+  total_items_count: <number> // Optional, if number > 0
+  quota: <number>,
+  quota_remaining: <number>
+}
+```
 
 ## Code speaks.
 
