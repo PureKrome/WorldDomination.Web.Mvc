@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldDomination.Web.Mvc", "Code\WorldDomination.Mvc\WorldDomination.Web.Mvc.csproj", "{B4A3A345-5699-45B9-BF06-46D56BF41ADA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldDomination.Web.SampleApplication", "Code\WorldDomination.Web.SampleApplication\WorldDomination.Web.SampleApplication.csproj", "{B961C9D3-1014-4284-A015-D0C8B9B6D98D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldDomination.Tests", "Code\WorldDomination.Tests\WorldDomination.Tests.csproj", "{AD93061D-30B1-4F17-A016-4DEDA749ED84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldDomination.Web.Mvc", "Code\WorldDomination.Web.Mvc\WorldDomination.Web.Mvc.csproj", "{B4A3A345-5699-45B9-BF06-46D56BF41ADA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,14 +15,6 @@ Global
 		Release|Mixed Platforms = Release|Mixed Platforms
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B4A3A345-5699-45B9-BF06-46D56BF41ADA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B4A3A345-5699-45B9-BF06-46D56BF41ADA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B4A3A345-5699-45B9-BF06-46D56BF41ADA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{B4A3A345-5699-45B9-BF06-46D56BF41ADA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{B4A3A345-5699-45B9-BF06-46D56BF41ADA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B4A3A345-5699-45B9-BF06-46D56BF41ADA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B4A3A345-5699-45B9-BF06-46D56BF41ADA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{B4A3A345-5699-45B9-BF06-46D56BF41ADA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B961C9D3-1014-4284-A015-D0C8B9B6D98D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B961C9D3-1014-4284-A015-D0C8B9B6D98D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B961C9D3-1014-4284-A015-D0C8B9B6D98D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -39,6 +31,14 @@ Global
 		{AD93061D-30B1-4F17-A016-4DEDA749ED84}.Release|Any CPU.Build.0 = Release|x86
 		{AD93061D-30B1-4F17-A016-4DEDA749ED84}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{AD93061D-30B1-4F17-A016-4DEDA749ED84}.Release|Mixed Platforms.Build.0 = Release|x86
+		{B4A3A345-5699-45B9-BF06-46D56BF41ADA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4A3A345-5699-45B9-BF06-46D56BF41ADA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4A3A345-5699-45B9-BF06-46D56BF41ADA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B4A3A345-5699-45B9-BF06-46D56BF41ADA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B4A3A345-5699-45B9-BF06-46D56BF41ADA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4A3A345-5699-45B9-BF06-46D56BF41ADA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4A3A345-5699-45B9-BF06-46D56BF41ADA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B4A3A345-5699-45B9-BF06-46D56BF41ADA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

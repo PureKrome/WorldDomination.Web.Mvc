@@ -13,9 +13,14 @@ namespace WorldDomination.Web.Mvc.Models
     {
         public ErrorViewModel()
         {
+            ErrorStatus = HttpStatusCode.InternalServerError;
         }
 
-        public ErrorViewModel(IDictionary<string, ModelState> modelStateDictionary)
+        public ErrorViewModel(IDictionary<string, ModelState> modelStateDictionary) : this(HttpStatusCode.InternalServerError, modelStateDictionary)
+        {
+        }
+
+        public ErrorViewModel(HttpStatusCode errorStatus, IDictionary<string, ModelState> modelStateDictionary)
         {
             if (modelStateDictionary == null)
             {
@@ -39,6 +44,13 @@ namespace WorldDomination.Web.Mvc.Models
             }
 
             ErrorMessage = errorMessage.ToString();
+            ErrorStatus = errorStatus;
+        }
+
+        public ErrorViewModel(HttpStatusCode errorStatus, string errorMessage)
+        {
+            ErrorStatus = errorStatus;
+            ErrorMessage = errorMessage;
         }
 
         public HttpStatusCode ErrorStatus { get; set; }
