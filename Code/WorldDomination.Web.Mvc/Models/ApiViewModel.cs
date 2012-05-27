@@ -11,7 +11,7 @@ namespace WorldDomination.Web.Mvc.Models
 
         public int TotalPages
         {
-            get { return (int)Math.Ceiling(TotalItemsCount / (double)(PageSize)); }
+            get { return TotalItemsCount <= 0 ? 0 : (int) Math.Ceiling(TotalItemsCount/(double) (PageSize)); }
         }
 
         public int TotalItemsCount { get; set; }
