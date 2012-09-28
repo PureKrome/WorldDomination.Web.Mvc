@@ -7,8 +7,6 @@ using System.Web.Mvc;
 
 namespace WorldDomination.Web.Mvc.Models
 {
-    // ReSharper disable InconsistentNaming
-
     public class ErrorViewModel : BaseApiViewModel
     {
         public ErrorViewModel()
@@ -16,7 +14,8 @@ namespace WorldDomination.Web.Mvc.Models
             ErrorStatus = HttpStatusCode.InternalServerError;
         }
 
-        public ErrorViewModel(IDictionary<string, ModelState> modelStateDictionary) : this(HttpStatusCode.InternalServerError, modelStateDictionary)
+        public ErrorViewModel(IDictionary<string, ModelState> modelStateDictionary)
+            : this(HttpStatusCode.InternalServerError, modelStateDictionary)
         {
         }
 
@@ -56,6 +55,4 @@ namespace WorldDomination.Web.Mvc.Models
         public HttpStatusCode ErrorStatus { get; set; }
         public string ErrorMessage { get; set; }
     }
-
-    // ReSharper restore InconsistentNaming
 }

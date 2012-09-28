@@ -110,7 +110,11 @@ namespace WorldDomination.Web.Mvc.Results
             HttpResponseBase response = context.HttpContext.Response;
 
             response.ContentType = !string.IsNullOrEmpty(ContentType) ? ContentType : "application/json";
+
+            // It's possible we might want to send back a 500 error with an error message, as json.
+            // IIS express works ok, but IIS keeps trapping non 200's. So lets tell IIS to not handle non 200's.
             response.StatusCode = (int) HttpStatusCode;
+            response.TrySkipIisCustomErrors = true;
 
             if (ContentEncoding != null)
             {

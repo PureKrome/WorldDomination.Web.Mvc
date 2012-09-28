@@ -21,6 +21,7 @@ namespace WorldDomination.Web.Mvc.Attributes
             {
                 throw new ArgumentNullException("filterContext");
             }
+
             if (filterContext.IsChildAction)
             {
                 return;
@@ -40,7 +41,7 @@ namespace WorldDomination.Web.Mvc.Attributes
 
             Exception exception = filterContext.Exception;
 
-            HttpStatusCode httpStatusCode = HttpStatusCode.InternalServerError;
+            var httpStatusCode = HttpStatusCode.InternalServerError;
             if (exception is HttpException)
             {
                 httpStatusCode = (HttpStatusCode) ((HttpException) exception).GetHttpCode();
