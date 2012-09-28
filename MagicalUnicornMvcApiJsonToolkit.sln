@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldDomination.Web.SampleApplication", "Code\WorldDomination.Web.SampleApplication\WorldDomination.Web.SampleApplication.csproj", "{B961C9D3-1014-4284-A015-D0C8B9B6D98D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldDomination.Tests", "Code\WorldDomination.Tests\WorldDomination.Tests.csproj", "{AD93061D-30B1-4F17-A016-4DEDA749ED84}"
