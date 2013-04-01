@@ -1,25 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Web.Mvc;
 
-namespace WorldDomination.Web.Mvc.Models
+namespace WorldDomination.Web.Mvc.Results
 {
-    public class ErrorViewModel : BaseApiViewModel
+    public class ErrorJsonResult : BaseApiJsonResult
     {
-        public ErrorViewModel()
+        public ErrorJsonResult()
         {
             ErrorStatus = HttpStatusCode.InternalServerError;
         }
 
-        public ErrorViewModel(IDictionary<string, ModelState> modelStateDictionary)
+        public ErrorJsonResult(IDictionary<string, ModelState> modelStateDictionary)
             : this(HttpStatusCode.InternalServerError, modelStateDictionary)
         {
         }
 
-        public ErrorViewModel(HttpStatusCode errorStatus, IDictionary<string, ModelState> modelStateDictionary)
+        public ErrorJsonResult(HttpStatusCode errorStatus, IDictionary<string, ModelState> modelStateDictionary)
         {
             if (modelStateDictionary == null)
             {
@@ -46,13 +47,21 @@ namespace WorldDomination.Web.Mvc.Models
             ErrorStatus = errorStatus;
         }
 
-        public ErrorViewModel(HttpStatusCode errorStatus, string errorMessage)
+        public ErrorJsonResult(HttpStatusCode errorStatus, string errorMessage)
         {
             ErrorStatus = errorStatus;
             ErrorMessage = errorMessage;
         }
 
-        public HttpStatusCode ErrorStatus { get; set; }
-        public string ErrorMessage { get; set; }
+        public HttpStatusCode ErrorStatus { get; private set; }
+        public string ErrorMessage { get; private set; }
+
+        protected override dynamic SetData()
+        {
+            dynamic data = new ExpandoObject();
+            data.error_message = ErrorMessage;
+
+            return data;
+        }
     }
 }

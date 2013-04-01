@@ -3,7 +3,6 @@ using System.Net;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using WorldDomination.Web.Mvc.Models;
 using WorldDomination.Web.Mvc.Results;
 
 namespace WorldDomination.Web.Mvc.Attributes
@@ -39,7 +38,7 @@ namespace WorldDomination.Web.Mvc.Attributes
                 throw new ArgumentException("filterContext.Exception is null or missing.");
             }
 
-            Exception exception = filterContext.Exception;
+            var exception = filterContext.Exception;
 
             var httpStatusCode = HttpStatusCode.InternalServerError;
             if (exception is HttpException)
@@ -55,11 +54,7 @@ namespace WorldDomination.Web.Mvc.Attributes
                 exception = exception.InnerException;
             }
 
-            filterContext.Result = new ApiJsonResult(new ErrorViewModel
-                                                     {
-                                                         ErrorMessage = errorMessages.ToString(),
-                                                         ErrorStatus = httpStatusCode
-                                                     });
+            filterContext.Result = new ErrorJsonResult(httpStatusCode, errorMessages.ToString());
 
             filterContext.ExceptionHandled = true;
             filterContext.HttpContext.Response.Clear();

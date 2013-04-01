@@ -33,8 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -45,11 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\HandleJsonErrorAttribute.cs" />
-    <Compile Include="Models\BaseApiViewModel.cs" />
-    <Compile Include="Models\ErrorViewModel.cs" />
-    <Compile Include="Models\ApiViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Results\ApiJsonResult.cs" />
+    <Compile Include="Results\BaseApiJsonResult.cs" />
+    <Compile Include="Results\ErrorJsonResult.cs" />
     <Compile Include="WebMvcExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -20,15 +20,15 @@ namespace WorldDomination.Tests
                 var apiController = new ApiController();
 
                 // Act.
-                ApiJsonResult apiJsonResult = apiController.Test(1);
+                BaseApiJsonResult baseApiJsonResult = apiController.Test(1);
 
                 // Assert.
-                Assert.NotNull(apiJsonResult);
-                Assert.NotNull(apiJsonResult.Data);
-                Assert.Equal(HttpStatusCode.OK, apiJsonResult.HttpStatusCode);
+                Assert.NotNull(baseApiJsonResult);
+                Assert.NotNull(baseApiJsonResult.Data);
+                Assert.Equal(HttpStatusCode.OK, baseApiJsonResult.HttpStatusCode);
 
                 // Retrieve the api data from 'items'.
-                dynamic data = apiJsonResult.Data;
+                dynamic data = baseApiJsonResult.Data;
                 Assert.NotNull(data.items);
                 Assert.Equal(1, data.items.Count);
 
@@ -49,15 +49,15 @@ namespace WorldDomination.Tests
                 var apiController = new ApiController();
 
                 // Act.
-                ApiJsonResult apiJsonResult = apiController.Test(2);
+                BaseApiJsonResult baseApiJsonResult = apiController.Test(2);
 
                 // Assert.
-                Assert.NotNull(apiJsonResult);
-                Assert.NotNull(apiJsonResult.Data);
-                Assert.Equal(HttpStatusCode.OK, apiJsonResult.HttpStatusCode);
+                Assert.NotNull(baseApiJsonResult);
+                Assert.NotNull(baseApiJsonResult.Data);
+                Assert.Equal(HttpStatusCode.OK, baseApiJsonResult.HttpStatusCode);
 
                 // Retrieve the api data from 'items'.
-                dynamic data = apiJsonResult.Data;
+                dynamic data = baseApiJsonResult.Data;
                 Assert.NotNull(data.items);
                 Assert.Equal(2, data.items.Count);
 
@@ -84,16 +84,16 @@ namespace WorldDomination.Tests
                 var apiController = new ApiController();
 
                 // Act.
-                ApiJsonResult apiJsonResult = apiController.Test(0);
+                BaseApiJsonResult baseApiJsonResult = apiController.Test(0);
 
                 // Assert.
-                Assert.NotNull(apiJsonResult);
-                Assert.NotNull(apiJsonResult.Data);
+                Assert.NotNull(baseApiJsonResult);
+                Assert.NotNull(baseApiJsonResult.Data);
 
                 // Retrieve the api data from 'items'.
-                dynamic data = apiJsonResult.Data;
+                dynamic data = baseApiJsonResult.Data;
                 Assert.Empty(data.items);
-                Assert.Equal(HttpStatusCode.OK, apiJsonResult.HttpStatusCode);
+                Assert.Equal(HttpStatusCode.OK, baseApiJsonResult.HttpStatusCode);
             }
         }
 
@@ -106,41 +106,17 @@ namespace WorldDomination.Tests
                 var apiController = new ApiController();
 
                 // Act.
-                ApiJsonResult apiJsonResult = apiController.Error2();
+                BaseApiJsonResult baseApiJsonResult = apiController.Error2();
 
                 // Assert.
-                Assert.NotNull(apiJsonResult);
-                Assert.NotNull(apiJsonResult.Data);
-                Assert.Equal(HttpStatusCode.BadRequest, apiJsonResult.HttpStatusCode);
+                Assert.NotNull(baseApiJsonResult);
+                Assert.NotNull(baseApiJsonResult.Data);
+                Assert.Equal(HttpStatusCode.BadRequest, baseApiJsonResult.HttpStatusCode);
 
                 // Retrieve the api data from 'items'.
-                dynamic data = apiJsonResult.Data;
+                dynamic data = baseApiJsonResult.Data;
                 Assert.NotNull(data);
                 Assert.Equal("Error message #1.\r\nError message #2.\r\nError message #3.\r\n", data.error_message);
-            }
-
-            [Fact]
-            public void GivenAnInvalidModelState_Error3_RetunsSomeJsonWithA400Status()
-            {
-                // Arrange.
-                var apiController = new ApiController();
-                
-                // Unit tests don't fire off Model Binding, so lets fake it.
-                apiController.ViewData.ModelState.AddModelError("Name", "A Name is required.");
-
-
-                // Act.
-                ApiJsonResult apiJsonResult = apiController.Error3(new InputViewModel());
-
-                // Assert.
-                Assert.NotNull(apiJsonResult);
-                Assert.NotNull(apiJsonResult.Data);
-                Assert.Equal(HttpStatusCode.BadRequest, apiJsonResult.HttpStatusCode);
-
-                // Retrieve the api data from 'items'.
-                dynamic data = apiJsonResult.Data;
-                Assert.NotNull(data);
-                Assert.Equal("A Name is required.", data.error_message);
             }
         }
     }

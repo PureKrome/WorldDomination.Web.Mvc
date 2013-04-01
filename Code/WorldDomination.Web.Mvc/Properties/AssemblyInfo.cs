@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("Api Json Result wrapper")]
-[assembly: AssemblyDescription("This is a json wrapper for any RESTful Api")]
+[assembly: AssemblyTitle("WorldDomination.Web.Mvc")]
+[assembly: AssemblyDescription("Some Mvc specific helper classes and magic stuff.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("World Domination Technologies Pty. Ltd.")]
-[assembly: AssemblyProduct("Api Json Result wrapper")]
+[assembly: AssemblyProduct("Mvc helper classes")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -35,5 +35,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("2.4.0.0")]
-[assembly: AssemblyFileVersion("2.4.0.0")]
+[assembly: AssemblyVersion("0.2.0.0")]
+[assembly: AssemblyFileVersion("0.2.0.0")]
