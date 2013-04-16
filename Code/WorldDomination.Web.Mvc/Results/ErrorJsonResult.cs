@@ -3,18 +3,12 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Web.Mvc;
 
 namespace WorldDomination.Web.Mvc.Results
 {
     public class ErrorJsonResult : BaseApiJsonResult
     {
-        public ErrorJsonResult()
-        {
-            ErrorStatus = HttpStatusCode.InternalServerError;
-        }
-
         public ErrorJsonResult(IDictionary<string, ModelState> modelStateDictionary)
             : this(HttpStatusCode.InternalServerError, modelStateDictionary)
         {
@@ -32,34 +26,70 @@ namespace WorldDomination.Web.Mvc.Results
                 return;
             }
 
-            var errorMessage = new StringBuilder();
-            foreach (ModelError error in modelStateDictionary.Values.SelectMany(x => x.Errors))
+            HttpStatusCode = errorStatus;
+            ErrorMessages = new Dictionary<string, string>();
+            var i = 0;
+            foreach (var errorMessage in modelStateDictionary.Values.SelectMany(x => x.Errors))
             {
-                if (errorMessage.Length > 0)
-                {
-                    errorMessage.Append(" ");
-                }
-
-                errorMessage.Append(error.ErrorMessage);
+                ErrorMessages.Add(string.Format("Error-{0}", ++i), errorMessage.ErrorMessage);
             }
-
-            ErrorMessage = errorMessage.ToString();
-            ErrorStatus = errorStatus;
         }
 
         public ErrorJsonResult(HttpStatusCode errorStatus, string errorMessage)
+            : this(errorStatus, new Dictionary<string, string> {{"Error", errorMessage}})
         {
-            ErrorStatus = errorStatus;
-            ErrorMessage = errorMessage;
         }
 
-        public HttpStatusCode ErrorStatus { get; private set; }
-        public string ErrorMessage { get; private set; }
+        public ErrorJsonResult(HttpStatusCode errorStatus, ICollection<string> errorMessages)
+        {
+            if (errorMessages == null ||
+                !errorMessages.Any())
+            {
+                throw new ArgumentNullException("errorMessages", "Must provide at least one error message key/value.");
+            }
+
+            HttpStatusCode = errorStatus;
+            ErrorMessages = new Dictionary<string, string>();
+            var i = 0;
+            foreach (var errorMessage in errorMessages)
+            {
+                ErrorMessages.Add(string.Format("Error-{0}", ++i), errorMessage);
+            }
+        }
+
+        public ErrorJsonResult(HttpStatusCode errorStatus, IDictionary<string, string> errorMessages)
+        {
+            if (errorMessages == null ||
+                errorMessages.Count <= 0)
+            {
+                throw new ArgumentNullException("errorMessages", "Must provide at least one error message key/value.");
+            }
+
+            HttpStatusCode = errorStatus;
+            ErrorMessages = errorMessages;
+        }
+
+        public HttpStatusCode ErrorStatus
+        {
+            get { return HttpStatusCode; }
+        }
+
+        public string ErrorMessage
+        {
+            get { return ErrorMessages.FirstOrDefault().Value; }
+        }
+
+        public IDictionary<string, string> ErrorMessages { get; private set; }
 
         protected override dynamic SetData()
         {
             dynamic data = new ExpandoObject();
-            data.error_message = ErrorMessage;
+            data.error_messages = (from error in ErrorMessages
+                                   select new
+                                              {
+                                                  key = error.Key,
+                                                  error_message = error.Value
+                                              }).ToList();
 
             return data;
         }

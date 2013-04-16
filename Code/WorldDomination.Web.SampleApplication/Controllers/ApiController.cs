@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
-using System.Text;
 using System.Web.Mvc;
 using WorldDomination.Web.Mvc.Attributes;
 using WorldDomination.Web.Mvc.Results;
@@ -21,12 +20,12 @@ namespace WorldDomination.Web.SampleApplication.Controllers
             IList<PewPew> pewPews = GetData(id) ?? new List<PewPew>();
 
             return new ApiJsonResult
-                {
-                    Items = new List<object>(pewPews),
-                    Page = pewPews.Count > 0 ? 1 : 0,
-                    PageSize = pewPews.Count > 0 ? 10 : 0,
-                    TotalItemsCount = pewPews.Count
-                };
+                       {
+                           Items = new List<object>(pewPews),
+                           Page = pewPews.Count > 0 ? 1 : 0,
+                           PageSize = pewPews.Count > 0 ? 10 : 0,
+                           TotalItemsCount = pewPews.Count
+                       };
         }
 
         [HandleJsonError]
@@ -37,12 +36,14 @@ namespace WorldDomination.Web.SampleApplication.Controllers
 
         public BaseApiJsonResult Error2()
         {
-            var errors = new StringBuilder();
-            errors.AppendLine("Error message #1.");
-            errors.AppendLine("Error message #2.");
-            errors.AppendLine("Error message #3.");
+            var errors = new List<string>
+                             {
+                                 "Error message #1.",
+                                 "Error message #2.",
+                                 "Error message #3."
+                             };
 
-            return new ErrorJsonResult(HttpStatusCode.BadRequest, errors.ToString());
+            return new ErrorJsonResult(HttpStatusCode.BadRequest, errors);
         }
 
         private static IList<PewPew> GetData(int id)
@@ -53,46 +54,46 @@ namespace WorldDomination.Web.SampleApplication.Controllers
             {
                 case 1:
                     pewPews = new List<PewPew>
-                        {
-                            new PewPew
-                                {
-                                    Name = "Pure Krome",
-                                    Age = 999,
-                                    DanceMoves = new List<string>
-                                        {
-                                            "Melbourne Shuffle",
-                                            "Moonwalk"
-                                        },
-                                    CreatedOn = DateTime.UtcNow
-                                }
-                        };
+                                  {
+                                      new PewPew
+                                          {
+                                              Name = "Pure Krome",
+                                              Age = 999,
+                                              DanceMoves = new List<string>
+                                                               {
+                                                                   "Melbourne Shuffle",
+                                                                   "Moonwalk"
+                                                               },
+                                              CreatedOn = DateTime.UtcNow
+                                          }
+                                  };
                     break;
                 case 2:
                     pewPews = new List<PewPew>
-                        {
-                            new PewPew
-                                {
-                                    Name = "Pure Krome",
-                                    Age = 999,
-                                    DanceMoves = new List<string>
-                                        {
-                                            "Melbourne Shuffle",
-                                            "Moonwalk"
-                                        },
-                                    CreatedOn = DateTime.UtcNow
-                                },
-                            new PewPew
-                                {
-                                    Name = "AssHat",
-                                    Age = 999,
-                                    DanceMoves = new List<string>
-                                        {
-                                            "Sprinkler",
-                                            "Small Box, Middle Box, Large Box"
-                                        },
-                                    CreatedOn = DateTime.UtcNow
-                                }
-                        };
+                                  {
+                                      new PewPew
+                                          {
+                                              Name = "Pure Krome",
+                                              Age = 999,
+                                              DanceMoves = new List<string>
+                                                               {
+                                                                   "Melbourne Shuffle",
+                                                                   "Moonwalk"
+                                                               },
+                                              CreatedOn = DateTime.UtcNow
+                                          },
+                                      new PewPew
+                                          {
+                                              Name = "AssHat",
+                                              Age = 999,
+                                              DanceMoves = new List<string>
+                                                               {
+                                                                   "Sprinkler",
+                                                                   "Small Box, Middle Box, Large Box"
+                                                               },
+                                              CreatedOn = DateTime.UtcNow
+                                          }
+                                  };
                     break;
                 default:
                     pewPews = null;
