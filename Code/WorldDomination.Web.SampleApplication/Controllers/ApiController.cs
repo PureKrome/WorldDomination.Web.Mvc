@@ -21,7 +21,7 @@ namespace WorldDomination.Web.SampleApplication.Controllers
 
             return new ApiJsonResult
                        {
-                           Items = new List<object>(pewPews),
+                           Item = new List<object>(pewPews),
                            Page = pewPews.Count > 0 ? 1 : 0,
                            PageSize = pewPews.Count > 0 ? 10 : 0,
                            TotalItemsCount = pewPews.Count

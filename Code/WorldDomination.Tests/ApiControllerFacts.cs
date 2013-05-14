@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using WorldDomination.Web.Mvc.Results;
 using WorldDomination.Web.SampleApplication.Controllers;
@@ -49,12 +50,13 @@ namespace WorldDomination.Tests
                 Assert.NotNull(apiJsonResult);
 
                 // Retrieve the api data from 'items'.
-                Assert.NotNull(apiJsonResult.Items);
-                Assert.NotEmpty(apiJsonResult.Items);
-                Assert.Equal(1, apiJsonResult.Items.Count);
+                var collection = apiJsonResult.Item as IList<object>;
+                Assert.NotNull(collection);
+                Assert.NotEmpty(collection);
+                Assert.Equal(1, collection.Count);
 
                 // Assert the data in the 'item's property.
-                var pewPew = apiJsonResult.Items[0] as PewPew;
+                var pewPew = collection[0] as PewPew;
                 Assert.NotNull(pewPew);
                 Assert.Equal("Pure Krome", pewPew.Name);
                 Assert.Equal(999, pewPew.Age);
@@ -76,12 +78,14 @@ namespace WorldDomination.Tests
                 Assert.NotNull(apiJsonResult);
 
                 // Retrieve the api data from 'items'.
-                Assert.NotNull(apiJsonResult.Items);
-                Assert.NotEmpty(apiJsonResult.Items);
-                Assert.Equal(2, apiJsonResult.Items.Count);
+                Assert.NotNull(apiJsonResult.Item);
+                var collection = apiJsonResult.Item as IList<object>;
+                Assert.NotNull(collection);
+                Assert.NotEmpty(collection);
+                Assert.Equal(2, collection.Count);
 
                 // Assert the data in the 'item's property.
-                var pewPew = apiJsonResult.Items[0] as PewPew;
+                var pewPew = collection[0] as PewPew;
                 Assert.NotNull(pewPew);
                 Assert.Equal("Pure Krome", pewPew.Name);
                 Assert.Equal(999, pewPew.Age);
@@ -107,7 +111,9 @@ namespace WorldDomination.Tests
 
                 // Assert.
                 Assert.NotNull(baseApiJsonResult);
-                Assert.Empty(baseApiJsonResult.Items);
+                var collection = baseApiJsonResult.Item as IList<object>;
+                Assert.NotNull(collection);
+                Assert.Empty(collection);
             }
         }
     }

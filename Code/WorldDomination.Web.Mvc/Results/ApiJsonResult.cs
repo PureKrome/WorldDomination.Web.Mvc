@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Dynamic;
 using System.Net;
 
@@ -7,7 +6,13 @@ namespace WorldDomination.Web.Mvc.Results
 {
     public class ApiJsonResult : BaseApiJsonResult
     {
-        public IList<object> Items { get; set; }
+        public ApiJsonResult()
+        {
+            Page = 1;
+            PageSize = 10;
+        }
+
+        public object Item { get; set; }
         public int Page { get; set; }
         public int PageSize { get; set; }
 
@@ -21,11 +26,8 @@ namespace WorldDomination.Web.Mvc.Results
         protected override dynamic SetData()
         {
             dynamic data = new ExpandoObject();
-            data.items = Items ?? new List<object>(); // NOTE: can be empty.
+            data.items = Item ?? new object(); // NOTE: can be empty.
 
-            //HttpStatusCode = apiViewModel.Items == null || apiViewModel.Items.Count <= 0
-            //                     ? HttpStatusCode.NoContent
-            //                     : HttpStatusCode.OK;
             HttpStatusCode = HttpStatusCode.OK;
 
             if (Page > 0)
