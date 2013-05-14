@@ -3,11 +3,11 @@ This package contains some magic titty sparkles to help people who wish to retur
 
 ```
 {
-  items: []
-             or
-         [
-             { ... list of your objects ... }
-         ],
+  item: []
+            or
+        [
+            { ... list of your objects ... }
+        ],
   page: <number>,             // Optional, if number > 0
   page_size: <number>,        // Optional, if number > 0
   total_items_count: <number> // Optional, if number > 0
@@ -57,7 +57,7 @@ public ActionResult Index()
                         };
     return new ApiJsonResult(new ResponseWrapper
                                     {
-                                        Items = new List<object> {pewPew}
+                                        Item = pewPew
                                     });
 }
 ```
@@ -72,7 +72,7 @@ public ActionResult Index2()
                                 new PewPew
                                     {
                                         Name = "Pure Krome",
-                                        Age = 999,
+                                        Age = 69,
                                         DanceMoves = new List<string>
                                                             {
                                                                 "Melbourne Shuffle",
@@ -93,7 +93,7 @@ public ActionResult Index2()
 
     return new ApiJsonResult(new ResponseWrapper
                                     {
-                                        Items = new List<object> {dancingPeople},
+                                        Item = dancingPeople,
                                         Page = 1,
                                         PageSize = 10,
                                         TotalItemsCount = 100,
