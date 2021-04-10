@@ -1,3 +1,7 @@
+# Archived - 10/04/2021
+
+---
+
 ## Api Json Result for ASP.NET MVC applications
 This package contains some magic titty sparkles to help people who wish to return Json results ** IN A STANDARD TEMPLATE ** for their ASP.NET MVC applications. Like .. an API website :)
 
